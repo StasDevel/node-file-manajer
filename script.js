@@ -1,5 +1,7 @@
 const { getUserName } = require("./helpers/getUserName");
+
 const { greeting } = require("./handlers/greeting");
+const { dirWork } = require("./handlers/dirWork");
 
 const username = getUserName();
 
@@ -12,17 +14,11 @@ stdinStream.on("data", (data) => {
     console.log(`\nThank you for using File Manager, ${username}, goodbye!`);
     process.exit();
   }
+
+  dirWork(chunk);
 });
 
 process.on("SIGINT", () => {
   console.log(`\nThank you for using File Manager, ${username}, goodbye!`);
   process.exit();
 });
-
-// console.table(
-//   [
-//     { a: 1, b: 2 },
-//     { a: 3, b: 7, c: "y" },
-//   ],
-//   ["a", "b"]
-// );
