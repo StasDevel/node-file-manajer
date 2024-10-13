@@ -6,6 +6,8 @@ const { add } = require("./utils/add");
 const { rn } = require("./utils/rn");
 const { cp } = require("./utils/cp");
 const { rm } = require("./utils/rm");
+const { mv } = require("./utils/mv");
+const { OS } = require("./utils/os");
 
 function dirWork(command) {
   if (command === "up") {
@@ -49,6 +51,19 @@ function dirWork(command) {
     const pathToFile = command.split(" ")[1];
 
     rm(pathToFile);
+  }
+
+  if (command.startsWith("mv ")) {
+    const pathToFile = command.split(" ")[1];
+    const newDir = command.split(" ")[2];
+
+    mv(pathToFile, newDir);
+  }
+
+  if (command.startsWith("os ")) {
+    const argument = command.split(" ")[1];
+
+    OS(argument);
   }
 }
 
