@@ -8,6 +8,8 @@ const { cp } = require("./utils/cp");
 const { rm } = require("./utils/rm");
 const { mv } = require("./utils/mv");
 const { OS } = require("./utils/os");
+const { hash } = require("./utils/hash");
+const { compress } = require("./utils/compress");
 
 function dirWork(command) {
   if (command === "up") {
@@ -64,6 +66,19 @@ function dirWork(command) {
     const argument = command.split(" ")[1];
 
     OS(argument);
+  }
+
+  if (command.startsWith("hash ")) {
+    const argument = command.split(" ")[1];
+
+    hash(argument);
+  }
+
+  if (command.startsWith("compress ")) {
+    const pathToFile = command.split(" ")[1];
+    const newDestination = command.split(" ")[2];
+
+    compress(pathToFile, newDestination);
   }
 }
 
