@@ -10,76 +10,122 @@ const { mv } = require("./utils/mv");
 const { OS } = require("./utils/os");
 const { hash } = require("./utils/hash");
 const { compress } = require("./utils/compress");
+const { decompress } = require("./utils/decompress");
 
 function dirWork(command) {
   if (command === "up") {
-    up();
+    return up();
   }
 
   if (command === "ls") {
-    ls();
+    return ls();
   }
 
   if (command.startsWith("cd ")) {
-    const dirName = command.split(" ")[1];
-    cd(dirName);
+    const commandArray = command.split(" ");
+
+    if (commandArray.length === 2) {
+      const dirName = commandArray[1];
+      return cd(dirName);
+    }
   }
 
   if (command.startsWith("cat ")) {
-    const fileName = command.split(" ")[1];
-    cat(fileName);
+    const commandArray = command.split(" ");
+
+    if (commandArray.length === 2) {
+      const fileName = commandArray[1];
+      return cat(fileName);
+    }
   }
 
   if (command.startsWith("add ")) {
-    const fileName = command.split(" ")[1];
-    add(fileName);
+    const commandArray = command.split(" ");
+
+    if (commandArray.length === 2) {
+      const fileName = commandArray[1];
+      return add(fileName);
+    }
   }
 
   if (command.startsWith("rn ")) {
-    const fileName = command.split(" ")[1];
-    const newFileName = command.split(" ")[2];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 3) {
+      const fileName = commandArray[1];
+      const newFileName = commandArray[2];
 
-    rn(fileName, newFileName);
+      return rn(fileName, newFileName);
+    }
   }
 
   if (command.startsWith("cp ")) {
-    const pathToFile = command.split(" ")[1];
-    const newDir = command.split(" ")[2];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 3) {
+      const pathToFile = commandArray[1];
+      const newDir = commandArray[2];
 
-    cp(pathToFile, newDir);
+      return cp(pathToFile, newDir).catch(() => console.log("error"));
+    }
   }
 
   if (command.startsWith("rm ")) {
-    const pathToFile = command.split(" ")[1];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 2) {
+      const pathToFile = commandArray[1];
 
-    rm(pathToFile);
+      return rm(pathToFile);
+    }
   }
 
   if (command.startsWith("mv ")) {
-    const pathToFile = command.split(" ")[1];
-    const newDir = command.split(" ")[2];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 3) {
+      const pathToFile = commandArray[1];
+      const newDir = commandArray[2];
 
-    mv(pathToFile, newDir);
+      return mv(pathToFile, newDir);
+    }
   }
 
   if (command.startsWith("os ")) {
-    const argument = command.split(" ")[1];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 2) {
+      const argument = commandArray[1];
 
-    OS(argument);
+      return OS(argument);
+    }
   }
 
   if (command.startsWith("hash ")) {
-    const argument = command.split(" ")[1];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 2) {
+      const argument = commandArray[1];
 
-    hash(argument);
+      return hash(argument);
+    }
   }
 
   if (command.startsWith("compress ")) {
-    const pathToFile = command.split(" ")[1];
-    const newDestination = command.split(" ")[2];
+    const commandArray = command.split(" ");
+    if (commandArray.length === 3) {
+      const pathToFile = commandArray[1];
+      const newDestination = commandArray[2];
 
-    compress(pathToFile, newDestination);
+      return compress(pathToFile, newDestination);
+    }
   }
+
+  if (command.startsWith("decompress ")) {
+    const commandArray = command.split(" ");
+    if (commandArray.length === 3) {
+      const pathToFile = commandArray[1];
+      const newDestination = commandArray[2];
+
+      return decompress(pathToFile, newDestination);
+    }
+  }
+
+  console.log("Invalid input");
 }
 
 exports.dirWork = dirWork;

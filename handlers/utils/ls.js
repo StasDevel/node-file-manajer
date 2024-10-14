@@ -12,7 +12,7 @@ function ls() {
       });
     }
     console.table(listOfFiles, ["Name", "Type"]);
-  });
+  }).catch(()=> console.error(`Operation failed`));
 }
 
 exports.ls = ls;

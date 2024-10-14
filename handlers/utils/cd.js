@@ -8,7 +8,7 @@ function cd(dirName) {
       }
       console.log(`You are currently in ${process.cwd()}`);
     })
-    .catch(() => console.log("Invalid input"));
+    .catch(() => console.log("Operation failed"));
 }
 
 exports.cd = cd;

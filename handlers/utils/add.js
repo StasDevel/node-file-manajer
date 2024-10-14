@@ -2,9 +2,13 @@ const fsPromise = require("node:fs/promises");
 const path = require("path");
 
 function add(fileName) {
-  const fileWay = path.join(process.cwd(), "testfiles", fileName);
+  try {
+    const fileWay = path.join(process.cwd(), fileName);
 
-  fsPromise.appendFile(fileWay, "");
+    fsPromise.appendFile(fileWay, "");
+  } catch {
+    console.log("Operation failed");
+  }
 }
 
 exports.add = add;

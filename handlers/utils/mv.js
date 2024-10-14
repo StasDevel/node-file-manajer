@@ -9,6 +9,9 @@ function mv(pathToFile, pathToNewFile) {
   let resData = [];
   const readableStream = fs.createReadStream(takeFrom);
   const writebleStream = fs.createWriteStream(putInto);
+  readableStream.on("error", () => {
+    console.log("Operation failed");
+  });
   readableStream.on("data", (data) => {
     resData.push(data);
   });

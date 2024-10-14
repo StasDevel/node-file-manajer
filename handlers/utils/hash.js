@@ -9,6 +9,9 @@ function hash(way) {
   const file = path.join(process.cwd(), way);
 
   const readStream = fs.createReadStream(file);
+  readStream.on("error", () => {
+    console.log("Operation failed");
+  });
   readStream.on("data", (data) => {
     hash.update(data);
   });

@@ -1,5 +1,6 @@
-const { getUserName } = require("./helpers/getUserName");
+const os = require('os');
 
+const { getUserName } = require("./helpers/getUserName");
 const { greeting } = require("./handlers/greeting");
 const { dirWork } = require("./handlers/dirWork");
 
@@ -9,7 +10,7 @@ greeting(username);
 
 const stdinStream = process.stdin;
 stdinStream.on("data", (data) => {
-  let chunk = data.toString().replace("\n", "");
+  let chunk = data.toString().replace(os.EOL, "");
   if (chunk === ".exit") {
     console.log(`\nThank you for using File Manager, ${username}, goodbye!`);
     process.exit();

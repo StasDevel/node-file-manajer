@@ -1,11 +1,15 @@
 const fsPromise = require("node:fs/promises");
 const path = require("path");
 
-function rn(fileName, newFileName) {
-  const fileWay = path.join(process.cwd(), "testfiles", fileName);
-  const newFileWay = path.join(process.cwd(), "testfiles", newFileName);
+async function rn(fileName, newFileName) {
+  try {
+    const fileWay = path.join(process.cwd(), fileName);
+    const newFileWay = path.join(process.cwd(), newFileName);
 
-  fsPromise.rename(fileWay, newFileWay);
+    const res = await fsPromise.rename(fileWay, newFileWay);
+  } catch {
+    console.log("Operation failed");
+  }
 }
 
 exports.rn = rn;
