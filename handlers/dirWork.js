@@ -1,18 +1,18 @@
-const { up } = require("./utils/up");
-const { ls } = require("./utils/ls");
-const { cd } = require("./utils/cd");
-const { cat } = require("./utils/cat");
-const { add } = require("./utils/add");
-const { rn } = require("./utils/rn");
-const { cp } = require("./utils/cp");
-const { rm } = require("./utils/rm");
-const { mv } = require("./utils/mv");
-const { OS } = require("./utils/os");
-const { hash } = require("./utils/hash");
-const { compress } = require("./utils/compress");
-const { decompress } = require("./utils/decompress");
+import { up } from "./utils/up.js";
+import { ls } from "./utils/ls.js";
+import { cd } from "./utils/cd.js";
+import { cat } from "./utils/cat.js";
+import { add } from "./utils/add.js";
+import { rn } from "./utils/rn.js";
+import { cp } from "./utils/cp.js";
+import { rm } from "./utils/rm.js";
+import { mv } from "./utils/mv.js";
+import { OS } from "./utils/os.js";
+import { hash } from "./utils/hash.js";
+import { compress } from "./utils/compress.js";
+import { decompress } from "./utils/decompress.js";
 
-function dirWork(command) {
+export function dirWork(command) {
   if (command === "up") {
     return up();
   }
@@ -127,5 +127,3 @@ function dirWork(command) {
 
   console.log("Invalid input");
 }
-
-exports.dirWork = dirWork;

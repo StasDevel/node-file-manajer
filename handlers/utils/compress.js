@@ -1,8 +1,9 @@
-const { brotliCompress } = require("zlib");
-const fs = require("fs");
-const path = require("path");
+import { brotliCompress } from "zlib";
+import fs from "node:fs";
+import path from "path";
+import process from "node:process";
 
-async function compress(wayToFile, wayToDestination) {
+export async function compress(wayToFile, wayToDestination) {
   const fileUrl = path.join(process.cwd(), wayToFile);
   const destinationUrl = path.join(process.cwd(), wayToDestination);
 
@@ -22,5 +23,3 @@ async function compress(wayToFile, wayToDestination) {
     });
   });
 }
-
-exports.compress = compress;

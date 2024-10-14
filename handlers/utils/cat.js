@@ -1,7 +1,8 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
 
-function cat(fileName) {
+export function cat(fileName) {
   try {
     const fileWay = path.join(process.cwd(), fileName);
 
@@ -21,5 +22,3 @@ function cat(fileName) {
     console.log("Operation failed");
   }
 }
-
-exports.cat = cat;

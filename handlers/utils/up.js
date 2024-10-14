@@ -1,4 +1,6 @@
-function up() {
+import process from "node:process";
+
+export function up() {
   try {
     if (process.env.HOME !== process.cwd()) {
       process.chdir("..");
@@ -8,5 +10,3 @@ function up() {
     console.error(`Operation failed`);
   }
 }
-
-exports.up = up;

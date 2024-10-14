@@ -1,14 +1,17 @@
-const process = require("node:process");
+import process from "node:process";
 
-function getUserName() {
+export function getUserName() {
   const enteredArguments = process.argv;
   let userName;
   enteredArguments.map((elem) => {
     if (elem.includes("username")) {
-      userName = elem.split("=")[1];
+      if (elem.split("=")[1]) {
+        userName = elem.split("=")[1];
+      } else {
+        console.log("Operation failed. Enter your name");
+        process.exit();
+      }
     }
   });
   return userName;
 }
-
-exports.getUserName = getUserName;

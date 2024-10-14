@@ -1,6 +1,7 @@
-const fs = require("node:fs/promises");
+import process from "node:process";
+import fs from "node:fs/promises";
 
-function cd(dirName) {
+export function cd(dirName) {
   fs.lstat(dirName)
     .then((data) => {
       if (data.isDirectory()) {
@@ -10,5 +11,3 @@ function cd(dirName) {
     })
     .catch(() => console.log("Operation failed"));
 }
-
-exports.cd = cd;

@@ -1,7 +1,8 @@
-const fsPromise = require("node:fs/promises");
-const path = require("path");
+import fsPromise from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
 
-async function rn(fileName, newFileName) {
+export async function rn(fileName, newFileName) {
   try {
     const fileWay = path.join(process.cwd(), fileName);
     const newFileWay = path.join(process.cwd(), newFileName);
@@ -11,5 +12,3 @@ async function rn(fileName, newFileName) {
     console.log("Operation failed");
   }
 }
-
-exports.rn = rn;

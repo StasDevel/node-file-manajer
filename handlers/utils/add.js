@@ -1,7 +1,7 @@
-const fsPromise = require("node:fs/promises");
-const path = require("path");
+import fsPromise from "node:fs/promises";
+import path from "node:path";
 
-function add(fileName) {
+export function add(fileName) {
   try {
     const fileWay = path.join(process.cwd(), fileName);
 
@@ -10,5 +10,3 @@ function add(fileName) {
     console.log("Operation failed");
   }
 }
-
-exports.add = add;

@@ -1,8 +1,8 @@
-const os = require('os');
+import os from "os";
 
-const { getUserName } = require("./helpers/getUserName");
-const { greeting } = require("./handlers/greeting");
-const { dirWork } = require("./handlers/dirWork");
+import { getUserName } from "./helpers/getUserName.js";
+import { greeting } from "./handlers/greeting.js";
+import { dirWork } from "./handlers/dirWork.js";
 
 const username = getUserName();
 

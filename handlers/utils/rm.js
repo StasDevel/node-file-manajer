@@ -1,7 +1,8 @@
-const fsPromise = require("node:fs/promises");
-const path = require("path");
+import process from "node:process";
+import fsPromise from "node:fs/promises";
+import path from "node:path";
 
-async function rm(pathToFile) {
+export async function rm(pathToFile) {
   try {
     const deleFile = path.join(process.cwd(), pathToFile);
 
@@ -10,5 +11,3 @@ async function rm(pathToFile) {
     console.log("Operation failed");
   }
 }
-
-exports.rm = rm;

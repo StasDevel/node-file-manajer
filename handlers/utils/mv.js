@@ -1,16 +1,26 @@
-const { rm } = require("./rm");
-const fs = require("node:fs");
-const path = require("path");
+import { rm } from "./rm.js";
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
 
-function mv(pathToFile, pathToNewFile) {
+export function mv(pathToFile, pathToNewFile) {
   const takeFrom = path.join(process.cwd(), pathToFile);
-  const putInto = path.join(process.cwd(), pathToNewFile);
+  const putInto = path.join(
+    process.cwd(),
+    pathToNewFile,
+    path.basename(pathToFile)
+  );
 
   let resData = [];
   const readableStream = fs.createReadStream(takeFrom);
   const writebleStream = fs.createWriteStream(putInto);
   readableStream.on("error", () => {
     console.log("Operation failed");
+    return;
+  });
+  writebleStream.on("error", () => {
+    console.log("Operation failed");
+    return;
   });
   readableStream.on("data", (data) => {
     resData.push(data);
@@ -21,5 +31,3 @@ function mv(pathToFile, pathToNewFile) {
     rm(pathToFile);
   });
 }
-
-exports.mv = mv;

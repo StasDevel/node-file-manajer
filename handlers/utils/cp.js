@@ -1,7 +1,8 @@
-const fs = require("node:fs");
-const path = require("path");
+import fs from "node:fs";
+import path from "node:path";
+import process from "node:process";
 
-async function cp(pathToFile, pathToNewFile) {
+export async function cp(pathToFile, pathToNewFile) {
   const takeFrom = path.join(process.cwd(), pathToFile);
   const putInto = path.join(process.cwd(), pathToNewFile);
 
@@ -14,5 +15,3 @@ async function cp(pathToFile, pathToNewFile) {
     console.log("Operation failed");
   });
 }
-
-exports.cp = cp;

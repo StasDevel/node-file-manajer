@@ -1,8 +1,9 @@
-const { brotliDecompress } = require("zlib");
-const fs = require("fs");
-const path = require("path");
+import { brotliDecompress } from "zlib";
+import fs from "fs";
+import path from "path";
+import process from "node:process";
 
-async function decompress(wayToFile, wayToDestination) {
+export async function decompress(wayToFile, wayToDestination) {
   const fileUrl = path.join(process.cwd(), wayToFile);
   const destinationUrl = path.join(process.cwd(), wayToDestination);
 
@@ -22,5 +23,3 @@ async function decompress(wayToFile, wayToDestination) {
     });
   });
 }
-
-exports.decompress = decompress;
